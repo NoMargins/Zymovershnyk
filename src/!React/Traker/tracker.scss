@@ -1,0 +1,143 @@
+.tracker {
+  padding: 20px;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.status-bar {
+  display: flex;
+  flex-direction: column;
+  // gap: 20px;
+  position: relative;
+}
+
+.status-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+}
+
+.bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: relative;
+  z-index: 1; /* Щоб кулі завжди були зверху */
+}
+
+.bullet.active {
+  background-color: #007bff;
+  animation: pulse 2s infinite;
+}
+
+.bullet.green {
+  background-color: #4CAF50;
+}
+
+.line {
+  position: absolute;
+  width: 2px;
+  background-color: #ccc;
+  top: 0;
+  bottom: 0;
+  left: 9px; /* Відцентрувати під кулею */
+}
+
+.status-container.inactive span {
+  opacity: 0.5;
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.details {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+
+  @media (max-width: 1080px) {
+      display: block;
+  }
+}
+
+.details.third {
+  display: block;
+
+  .youtube-video {
+    width: 100%; /* Відео займатиме всю ширину батьківського контейнера */
+    position: relative;
+    padding-top: 56.25%; /* Пропорція 16:9 (висота від ширини) */
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}
+
+.details video {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.details p {
+  margin-top: 10px;
+}
+
+.details.hidden {
+  display: none;
+}
+
+.gameBtn {
+  display: block; /* Забезпечує блочний рівень кнопки */
+  width: 33%;
+  min-width: 300px;
+  margin: 20px auto; /* Автоматичні відступи по горизонталі вирівнюють кнопку */
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-family: 'Comfortaa', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: none;
+  transition: background-color 0.5s ease; /* Анімація для наведення */
+  
+  @media (max-width: 768px) {
+      width: 90%;
+      font-size: 1rem;
+  }
+}
+
+.gameBtn:hover {
+  background-color: #0056b3; /* Темніший відтінок при наведенні */
+}
+
+@keyframes pulse {
+  0% {
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+  }
+  70% {
+      box-shadow: 0 0 10px 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+  }
+}

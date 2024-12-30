@@ -1,0 +1,614 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+
+#root {
+    font-family: 'Comfortaa', sans-serif;
+}
+
+
+  .app {
+    min-height: 100vh; /* Мінімальна висота для блоку */
+    width: 100%; /* Ширина блоку на весь екран */
+    background-image: url('../../public/img/back.png'); /* Шлях до зображення */
+    background-repeat: repeat-y; /* Повторювати фон лише по вертикалі */
+    background-size: 100% auto; /* Ширина 100%, висота автоматична */
+    background-position: top center; /* Розташувати фон по центру зверху */
+    overflow-x: hidden; /* Запобігти горизонтальному скролу, якщо фон масштабований */
+    padding: 20px;
+    @media (max-width: 780px) {
+      padding: 8px;
+    }
+}
+
+
+.landing {
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .header {
+    // background: linear-gradient(to bottom right, #e0f7fa, #ffe0b2);
+    padding: 20px;
+    border-radius: 10px;
+    background-color: #fff;
+    font-family: 'Comfortaa', sans-serif;
+    @media (max-width: 1080px) {
+      padding: 8px;
+    }
+  }
+  
+  .header h1 {
+    font-size: calc(1.5rem + 1vw);
+  }
+  
+  h2 {
+    font-size: 2rem;
+    margin-top: 8px;
+  }
+
+  .header p {
+    font-size: calc(1rem + 0.5vw);
+  }
+  
+  .legend, .tracker {
+    margin: 20px auto;
+    padding: 15px;
+    max-width: 70%;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    // background: linear-gradient(to bottom right, #e0f7fa, #ffe0b2);
+    background-color: #fff;
+
+    @media (max-width: 1080px) {
+        max-width: 600px;
+    }
+  }
+  
+  .legend p, .tracker p {
+    font-size: calc(0.9rem + 0.3vw);
+  }
+  
+  .progress-bar {
+    width: 100%;
+    height: 20px;
+    background: #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    margin: 10px 0;
+  }
+
+  .progress {
+    height: 100%;
+    background: #87CEEB;
+    transition: width 1s ease;
+  }
+
+  h2 {
+    color:#117cff;
+  }
+
+  p {
+    font-family: 'Comfortaa', sans-serif;
+    line-height: 2rem;
+  }
+
+  .headerTitle {
+    font-size: 2rem;
+    margin-top: 8px;
+  }
+
+  .legend {
+    margin-top: 20px;
+    position: relative;
+}
+
+.zymo-logo {
+    // position: absolute;
+    bottom: 10px;
+    right: 10px;
+    text-align: center;
+    img {
+        max-width: 220px;
+
+        @media (max-width: 1080px) {
+        max-width: 140px;
+        }
+    }
+}
+
+.tracker {
+  padding: 20px;
+  font-family: 'Comfortaa', sans-serif;
+}
+
+.status-bar {
+  display: flex;
+  flex-direction: column;
+  // gap: 20px;
+  position: relative;
+}
+
+.status-container {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+}
+
+.bullet {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: #ccc;
+  position: relative;
+  z-index: 1; /* Щоб кулі завжди були зверху */
+}
+
+.bullet.active {
+  background-color: #007bff;
+  animation: pulse 2s infinite;
+}
+
+.bullet.green {
+  background-color: #4CAF50;
+}
+
+.line {
+  position: absolute;
+  width: 2px;
+  background-color: #ccc;
+  top: 0;
+  bottom: 0;
+  left: 9px; /* Відцентрувати під кулею */
+}
+
+.status-container.inactive span {
+  opacity: 0.5;
+}
+
+.status-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.details {
+  margin-top: 10px;
+  display: flex;
+  align-items: flex-start;
+
+  @media (max-width: 1080px) {
+      display: block;
+  }
+}
+
+.details.third {
+  display: block;
+
+  .youtube-video {
+    width: 100%; /* Відео займатиме всю ширину батьківського контейнера */
+    position: relative;
+    padding-top: 56.25%; /* Пропорція 16:9 (висота від ширини) */
+    overflow: hidden;
+
+    iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+}
+
+.details video {
+  width: 100%;
+  max-width: 400px;
+  margin-top: 10px;
+  margin-right: 20px;
+}
+
+.details p {
+  margin-top: 10px;
+}
+
+.details.hidden {
+  display: none;
+}
+
+.gameBtn {
+  display: block; /* Забезпечує блочний рівень кнопки */
+  width: 33%;
+  min-width: 300px;
+  margin: 20px auto; /* Автоматичні відступи по горизонталі вирівнюють кнопку */
+  padding: 12px;
+  background-color: #4CAF50;
+  color: #fff;
+  font-family: 'Comfortaa', sans-serif;
+  text-align: center;
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 1.2rem;
+  border-radius: 20px;
+  border: none;
+  transition: background-color 0.5s ease; /* Анімація для наведення */
+  
+  @media (max-width: 768px) {
+      width: 90%;
+      font-size: 1rem;
+  }
+}
+
+.gameBtn:hover {
+  background-color: #0056b3; /* Темніший відтінок при наведенні */
+  transform: scale(1.05);
+}
+
+@keyframes pulse {
+  0% {
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+  }
+  70% {
+      box-shadow: 0 0 10px 10px rgba(0, 123, 255, 0);
+  }
+  100% {
+      box-shadow: 0 0 0 0 rgba(0, 123, 255, 0.5);
+  }
+}
+
+
+// #forPuzzle {
+//   position: absolute;
+//   width: 95vw;
+//   height: 95vh;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%);
+//   background-color: #ffffdd;
+//   overflow: hidden; 
+// }
+
+
+// .polypiece {
+//   display: block;
+//   overflow: hidden;
+//   position: absolute;
+//   border: none;
+// }
+
+// .moving {
+//   transition-property: top, left;
+//   transition-duration: 1s;
+//   transition-timing-function: linear;
+//   border: none;
+// }
+
+// .gameCanvas {
+//   display: none;
+//   overflow: hidden;
+//   position: absolute;
+//   border: none;
+// }
+
+// #timer-container {
+//   position: absolute;
+//   top: 8px;
+//   right: 8px;
+//   display: flex;
+//   align-items: center;
+//   z-index: 5;
+
+//   @media screen and (max-width: 500px) {
+//     flex-direction: column;
+//   }
+// }
+
+// #timer {
+//   font-size: 2rem;
+//   background-color: rgba(0, 0, 0, 0.5);
+//   color: white;
+//   padding: 10px 20px;
+//   border-radius: 10px;
+//   margin-right: 10px;
+
+//   @media screen and (max-width: 500px) {
+//     font-size: 1.5rem;
+//     padding: 5px 10px;
+//     margin-right: 0;
+//     margin-bottom: 10px;
+//   }
+// }
+
+// #pause-btn {
+//   font-size: 2rem;
+//   padding: 10px 20px;
+//   border: none;
+//   background-color: #ff4d4d;
+//   color: white;
+//   border-radius: 10px;
+//   cursor: pointer;
+
+//   @media screen and (max-width: 500px) {
+//     font-size: 1.5rem;
+//     padding: 8px 16px;
+//   }
+// }
+
+// #pause-overlay {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   width: 100vw;
+//   height: 100vh;
+//   background-color: rgba(0, 0, 0, 0.7);
+//   display: none;
+//   justify-content: center;
+//   align-items: center;
+//   z-index: 1002;
+// }
+
+// #pause-overlay.show {
+//   display: flex;
+// }
+
+// #play-btn {
+//   font-size: 2rem;
+//   padding: 20px 40px;
+//   border: none;
+//   background-color: #4caf50;
+//   color: white;
+//   border-radius: 10px;
+//   cursor: pointer;
+
+//   @media screen and (max-width: 500px) {
+//     font-size: 1.5rem;
+//     padding: 15px 30px;
+//   }
+// }
+
+// body.paused #forPuzzle {
+//   filter: blur(10px);
+// }
+
+// .completion-popup {
+//   position: fixed;
+//   top: 0;
+//   left: 0;
+//   width: 100%;
+//   height: 100%;
+//   background-color: rgba(0, 0, 0, 0.85);
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   z-index: 1000;
+//   padding: 20px;
+// }
+
+// .completion-popup .popup-content {
+//   background-color: #f7f0b6;
+//   padding: 30px;
+//   text-align: center;
+//   border-radius: 15px;
+//   max-width: 90%;
+//   max-height: 80%;
+//   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+//   animation: slideIn 0.3s ease-out;
+//   overflow-y: auto; /* Added to handle overflow for long content */
+// }
+
+// .completion-popup .popup-content p {
+//   margin-bottom: 20px;
+//   font-size: 20px;
+//   color: #333;
+
+//   @media screen and (max-width: 500px) {
+//     font-size: 16px;
+//     margin-bottom: 15px;
+//   }
+// }
+
+// .completion-popup .popup-content .buttons-container {
+//   @media screen and (max-width: 500px) {
+//     display: flex;
+//     flex-direction: column;
+//     align-items: center;
+//   }
+// }
+
+// .completion-popup .popup-content button {
+//   padding: 12px 24px;
+//   font-size: 18px;
+//   cursor: pointer;
+//   border: none;
+//   background-color: #2a6eb2;
+//   color: #fff;
+//   border-radius: 30px;
+//   transition: background-color 0.3s ease, transform 0.2s ease;
+
+//   @media screen and (min-width: 501px) {
+//     &:first-child {
+//       margin-right: 20px;
+//     }
+//   }
+
+//   &:hover {
+//     background-color: #e9c71f;
+//     transform: scale(1.05);
+//   }
+
+//   @media screen and (max-width: 500px) {
+//     font-size: 16px;
+//     padding: 10px 20px;
+//     margin-top: 20px;
+//     width: 90%;
+//   }
+// }
+
+// @keyframes slideIn {
+//   from {
+//     transform: translateY(-20px);
+//     opacity: 0;
+//   }
+//   to {
+//     transform: translateY(0);
+//     opacity: 1;
+//   }
+// }
+
+
+// .desc-popup {
+//   position: fixed;
+//   top: 50%;
+//   left: 50%;
+//   transform: translate(-50%, -50%) scale(0.8);
+//   width: 90%;
+//   max-width: 90vw;
+//   max-height: 90vh;
+//   background-color: #fffdfde6;
+//   color: #fff;
+//   padding: 20px;
+//   border-radius: 10px;
+//   box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+//   z-index: 1000;
+//   text-align: center;
+//   overflow-y: hidden; /* Вимикаємо прокрутку для основного блоку */
+//   opacity: 0;
+//   transition: transform 0.3s ease, opacity 0.3s ease;
+
+//   @media screen and (max-width: 700px) {
+//     padding: 8px;
+//   }
+
+//   &.visible {
+//     transform: translate(-50%, -50%) scale(1);
+//     opacity: 1;
+//   }
+
+//   .content-wrapper {
+//     max-height: 75vh;
+//     overflow-y: auto;
+//     margin-bottom: 10px; /* Додати трохи місця для кнопок */
+//   }
+
+//   h2 {
+//     font-size: 24px;
+//     margin-bottom: 15px;
+//     color: #2a6eb2;
+//     @media screen and (max-width: 700px) {
+//       font-size: 16px;
+//     }
+//   }
+
+//   p {
+//     font-size: 18px;
+//     margin-bottom: 10px;
+//     line-height: 1.5;
+//     text-align: left;
+//     @media screen and (max-width: 700px) {
+//       font-size: 12px;
+//     }
+//   }
+
+//   .scroll-button {
+//     position: relative;
+//     background: none;
+//     border: none;
+//     font-size: 18px;
+//     font-weight: bold;
+//     color: #2a6eb2;
+//     cursor: pointer;
+//     transition: color 0.3s ease;
+//     margin-top: 10px;
+//     @media screen and (max-width: 700px) {
+//       font-size: 14px;
+//     }
+
+//     &:hover {
+//       color: #df9814;
+//     }
+//   }
+
+//   .close-button {
+//     position: absolute;
+//     top: 10px;
+//     left: 10px;
+//     background: none;
+//     border: none;
+//     font-size: 24px;
+//     font-weight: bold;
+//     color: #2a6eb2;
+//     cursor: pointer;
+//     transition: color 0.3s ease;
+//     @media screen and (max-width: 700px) {
+//       font-size: 14px;
+//     }
+
+//     &:hover {
+//       color: #df9814;
+//     }
+//   }
+
+//   #close-popup-bottom {
+//     margin-top: 10px;
+//   }
+// }
+
+// /* Стилізація для скроллбару всередині попапу */
+// .desc-popup .content-wrapper {
+//   max-height: 75vh;
+//   overflow-y: auto;
+//   margin-bottom: 10px;
+//   scrollbar-width: thin; /* Firefox */
+//   scrollbar-color: #2a6eb2 #fffdfde6; /* Firefox */
+// }
+
+// /* Стилізація для WebKit (Chrome, Safari, Edge) */
+// .desc-popup .content-wrapper::-webkit-scrollbar {
+//   width: 8px; /* Ширина скроллбару */
+// }
+
+// .desc-popup .content-wrapper::-webkit-scrollbar-track {
+//   background: #fffdfde6; /* Колір фону скроллбару */
+//   border-radius: 10px;
+// }
+
+// .desc-popup .content-wrapper::-webkit-scrollbar-thumb {
+//   background-color: #2a6eb2; /* Колір ползунка скроллбару */
+//   border-radius: 10px;
+//   border: 2px solid #fffdfde6; /* Додаткове обрамлення для ползунка */
+// }
+
+// .desc-popup .content-wrapper::-webkit-scrollbar-thumb:hover {
+//   background-color: #df9814; /* Колір ползунка при наведенні */
+// }
+
+// .petal {
+//   width: 100px;
+//   height: 50px;
+//   background-color: yellow;
+//   border-radius: 50% 50% 0 0;
+//   cursor: pointer;
+//   text-align: center;
+//   padding-top: 10px;
+// }
+
+// .hint-popup {
+//   background-color: rgba(255, 255, 0, 0.9);
+//   padding: 10px;
+//   border-radius: 5px;
+//   position: absolute;
+//   z-index: 1000;
+//   transition: opacity 0.5s ease;
+// }

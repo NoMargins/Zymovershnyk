@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://static-00.iconduck.com/assets.00/santa-claus-emoji-emoji-1717x2048-2faxidf4.png" type="image/png">
+    <title>Свята Зимовершника</title>
+    <link rel="stylesheet" href="/styles/rules.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app">
+        <div class="rulesRegistration">
+            <div class="layer">
+                <h1 class="title">Свята Зимовершника</h1>
+                <p class="instructions">Для найкращого досвіду рекомендуємо використовувати компʼютер, ноутбук або планшет 🎄</p>
+                <button type="button" id="skipBtn" class="btn skip-btn">Пограти без реєстрації</button>
+                <p class="instructions">Хочеш виграти один із 25 святкових кошичків?<br/>Заповни форму нижче! ❄️</p>
+                <p class="deadline">Турнір триває до <b>14 січня 2025 року</b>. Удачі! ✨</p>
+                <form id="registrationForm" class="form">
+                    <input type="text" name="nickname" placeholder="Твій турнірний нікнейм" minlength="5" required>
+                    <input type="text" name="name" placeholder="Твоє повне ім'я" minlength="5" required>
+                    <input type="tel" name="phone" placeholder="Твій номер телефону" minlength="10" required>
+                    <input type="email" name="email" placeholder="Корпоративна пошта (за наявності)">
+                    <select name="business" required>
+                        <option value="" disabled selected>Обери бізнес, до якого ти належиш</option>
+                        <option value="Сільпо">Сільпо</option>
+                        <option value="Холдинг">Холдинг</option>
+                        <option value="Логістика">Логістика</option>
+                        <option value="TemaBit">TemaBit</option>
+                        <option value="E-com">E-com</option>
+                        <option value="Фоззі Коммерц">Фоззі Коммерц</option>
+                    </select>
+                    <div class="buttons">
+                        <button type="submit" id="nextBtn" class="btn submit-btn">Почати</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+        const nextBtn = document.getElementById('nextBtn');
+        const skipBtn = document.getElementById('skipBtn');
+        const form = document.getElementById('registrationForm');
+
+        if (nextBtn && form) {
+            nextBtn.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const formObject = Object.fromEntries(formData.entries());
+
+                const name = formObject.name.trim();
+                const phone = formObject.phone.trim();
+
+                if (!name || name.length < 5) {
+                    alert('Будь ласка, введіть ім\'я, яке містить щонайменше 5 символів.');
+                    return;
+                }
+
+                if (!phone || phone.length < 10) {
+                    alert('Будь ласка, введіть номер телефону, який містить щонайменше 10 символів.');
+                    return;
+                }
+
+
+                try {
+                    localStorage.setItem('registrationData', JSON.stringify(formObject));
+                    console.log('Дані успішно збережені в localStorage:', formObject);
+                    window.location.href = 'puzzle.html';
+                } catch (error) {
+                    console.error('Помилка при збереженні в localStorage:', error);
+                    alert('Помилка при збереженні даних. Спробуйте ще раз.');
+                }
+            });
+        }
+
+        if (skipBtn) {
+            skipBtn.addEventListener('click', function () {
+                localStorage.clear();
+                window.location.href = 'puzzle.html';
+            });
+        }
+
+    </script>
+</body>
+</html>

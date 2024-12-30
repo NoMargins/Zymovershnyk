@@ -1,0 +1,38 @@
+.petal {
+    width: 100px;
+    height: 50px;
+    background-color: yellow;
+    border-radius: 50% 50% 0 0;
+    cursor: pointer;
+    text-align: center;
+    padding-top: 10px;
+}
+
+.region-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.region-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.hint-popup {
+    background-color: rgba(255, 255, 0, 0.9);
+    padding: 10px;
+    border-radius: 5px;
+    position: absolute;
+    z-index: 1000;
+    transition: opacity 0.5s ease;
+}

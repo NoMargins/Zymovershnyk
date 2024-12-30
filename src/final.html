@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:url" content="https://nezalezhnist.team-911.com.ua" />
+    <meta property="og:title" content="#СвятаЗимовершника" />
+    <meta property="og:description" content="Пограємо?" />
+    <meta property="og:image" content="https://zymovershnyk.fun/img/logo.svg" />
+    <meta property="og:type" content="website" />
+    <link rel="icon" href="https://static-00.iconduck.com/assets.00/santa-claus-emoji-emoji-1717x2048-2faxidf4.png" type="image/png">
+    <title>Свята Зимовершника</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Caveat:wght@400;700&display=swap">
+    <link rel="stylesheet" href="/styles/final.css">
+</head>
+<body>
+    <div class="app">
+        <div class="final-page">
+            <div class="layer">
+                <h2>Ти просто космос!</h2>
+                <p>Зимовершник вражений твоєю швидкістю та спритністю.</p>
+                
+                <h2 class="champions-title">🏆 Наші чемпіони: 🏆</h2>
+                <ul id="leaderboard">
+                    <!-- Список учасників буде динамічно генеруватися -->
+                </ul>
+                
+                <p class="final-note">
+                    <b>Фінальний результат зафіксуємо 14 січня о 12:00.</b>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+            
+        const itemsPerPage = 25;
+        let currentPage = 1;
+        let participants = [];
+
+        // Функція для отримання даних з API
+        function fetchParticipants() {
+            fetch('https://api.zymovershnyk.fun/results.php', {
+                method: 'GET'
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(data => {
+                    // Перевірка статусу відповіді
+                    if (data.status !== "success") {
+                        throw new Error('Сервер повернув статус помилки');
+                    }
+
+                    // Обробка масиву даних
+                    participants = data.results.map((item, index) => ({
+                        name: item.nickname,
+                        time: item.result
+                    }));
+
+                    // Сортуємо учасників за часом від найменшого до найбільшого
+                    participants.sort((a, b) => {
+                        const timeA = a.time.split(':').reduce((acc, time) => (60 * acc) + +time);
+                        const timeB = b.time.split(':').reduce((acc, time) => (60 * acc) + +time);
+                        return timeA - timeB;
+                    });
+
+                    renderPage(currentPage);
+                })
+                .catch(error => {
+                    console.error('Помилка при отриманні даних:', error);
+                });
+        }
+
+
+        function renderPage(page) {
+            const leaderboard = document.getElementById('leaderboard');
+            leaderboard.innerHTML = ''; // Очищуємо попередні результати
+
+            const start = (page - 1) * itemsPerPage;
+            const end = start + itemsPerPage;
+            const pageParticipants = participants.slice(start, end);
+
+            pageParticipants.forEach((participant, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${start + index + 1}. ${participant.name} - ${participant.time}`;
+                leaderboard.appendChild(li);
+            });
+        }
+
+        window.onload = function() {
+            console.log('Window loaded, fetching participants...'); // Для перевірки
+            fetchParticipants(); 
+        };
+
+    </script>
+</body>
+</html>

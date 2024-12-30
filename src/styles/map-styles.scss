@@ -1,0 +1,24 @@
+.region {
+    transition: fill 0.3s ease, transform 0.3s ease;
+}
+
+.region.highlight {
+    fill: #FFD700; /* Зміна кольору при наведенні */
+    transform: scale(1.1); /* Збільшення при наведенні */
+}
+
+.region.active {
+    animation: pulse 1s infinite; /* Пульсація при натисканні */
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
