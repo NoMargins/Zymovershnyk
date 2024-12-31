@@ -945,7 +945,6 @@ let events = [];
           // Додаємо подію до черги з перевіркою, щоб уникнути дублювання
           if (!events.some(e => e.event === "finished")) {
               setTimeout(() => {
-                  console.log("Подія 'finished' додана");
                   events.push({ event: "finished" });
               }, 1200);
           } else {
@@ -1051,6 +1050,7 @@ let events = [];
           } else {
           console.error('Дані для відправки неповні.');
           }
+
           console.log("Puzzle completed. Stopping timer.");
           stopTimer(); // Зупиняємо таймер
           const timerElement = document.getElementById('timer');
@@ -1107,7 +1107,6 @@ autoStart = isMiniature();
 loadInitialFile();
 events.push({ event: "nbpieces", nbpieces: 50 });
 requestAnimationFrame(animate);
-
 
 
 export function startTimer() {

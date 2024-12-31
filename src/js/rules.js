@@ -32,7 +32,7 @@ if (nextBtn && form) {
             return;
         }
 
-        formObject.id = generateUUID();
+        // formObject.id = generateUUID();
 
         try {
             localStorage.setItem('registrationData', JSON.stringify(formObject));

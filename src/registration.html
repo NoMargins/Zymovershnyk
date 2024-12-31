@@ -40,51 +40,7 @@
         </div>
     </div>
 
-    <script>
 
-        const nextBtn = document.getElementById('nextBtn');
-        const skipBtn = document.getElementById('skipBtn');
-        const form = document.getElementById('registrationForm');
-
-        if (nextBtn && form) {
-            nextBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-
-                const formData = new FormData(form);
-                const formObject = Object.fromEntries(formData.entries());
-
-                const name = formObject.name.trim();
-                const phone = formObject.phone.trim();
-
-                if (!name || name.length < 5) {
-                    alert('Будь ласка, введіть ім\'я, яке містить щонайменше 5 символів.');
-                    return;
-                }
-
-                if (!phone || phone.length < 10) {
-                    alert('Будь ласка, введіть номер телефону, який містить щонайменше 10 символів.');
-                    return;
-                }
-
-
-                try {
-                    localStorage.setItem('registrationData', JSON.stringify(formObject));
-                    console.log('Дані успішно збережені в localStorage:', formObject);
-                    window.location.href = 'puzzle.html';
-                } catch (error) {
-                    console.error('Помилка при збереженні в localStorage:', error);
-                    alert('Помилка при збереженні даних. Спробуйте ще раз.');
-                }
-            });
-        }
-
-        if (skipBtn) {
-            skipBtn.addEventListener('click', function () {
-                localStorage.clear();
-                window.location.href = 'puzzle.html';
-            });
-        }
-
-    </script>
+    <script src="/js/rules.bundle.js" type="module"></script>
 </body>
 </html>
