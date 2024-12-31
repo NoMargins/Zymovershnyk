@@ -1,55 +1,57 @@
 .final-page {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    // background: linear-gradient(to bottom right, #e0f7fa, #ffe0b2);
-}
-
-.layer {
+    // display: flex;
+    // justify-content: center;
+    // align-items: center;
+    // width: 100%;
+    // height: 100vh;
+  }
+  
+  .layer {
     background: linear-gradient(to bottom right, #e0f7fa, #ffe0b2);
     width: 80%;
     max-width: 700px;
+    margin: 10px auto;
+    // max-height: 90%; // Максимальна висота блоку
+    // overflow-y: auto; // Додає прокрутку для вертикального вмісту
     padding: 12px;
     border-radius: 15px;
     box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2);
     text-align: center;
-}
-
-h2 {
+  }
+  
+  h2 {
     font-family: 'Comfortaa', sans-serif;
     font-size: 2rem;
     color: #2a6eb2;
     margin-bottom: 15px;
-}
-
-.champions-title {
+  }
+  
+  .champions-title {
     color: #4CAF50;
     margin-top: 30px;
-}
-
-p {
+  }
+  
+  p {
     font-family: 'Comfortaa', sans-serif;
     font-size: 1.2rem;
     color: #333;
     margin: 10px 0;
-}
-
-.final-note {
+  }
+  
+  .final-note {
     margin-top: 20px;
     font-size: 1.1rem;
     color: #555;
-}
-
-ul#leaderboard {
+  }
+  
+  ul#leaderboard {
     list-style: none;
     padding: 0;
     margin: 20px auto;
     width: 80%;
-}
-
-ul#leaderboard li {
+  }
+  
+  ul#leaderboard li {
     font-family: 'Comfortaa', sans-serif;
     font-size: 1.2rem;
     color: #444;
@@ -58,38 +60,44 @@ ul#leaderboard li {
     border-radius: 8px;
     background-color: rgba(42, 110, 178, 0.1);
     transition: background-color 0.3s;
-}
-
-ul#leaderboard li:hover {
-    background-color: rgba(42, 110, 178, 0.2);
-}
-
-/* Адаптивність */
-@media (max-width: 768px) {
+  
+    &:hover {
+      background-color: rgba(42, 110, 178, 0.2);
+    }
+  }
+  
+  // Адаптивність
+  @media (max-width: 768px) {
     .layer {
-        width: 95%;
-        padding: 8px;
+      width: 95%;
+      max-height: 85%; // Зменшена висота для менших екранів
+      padding: 8px;
     }
-
+  
     h2 {
-        font-size: 1.8rem;
+      font-size: 1.8rem;
     }
-
+  
     p, ul#leaderboard li {
-        font-size: 1rem;
+      font-size: 1rem;
     }
-}
-
-@media (max-width: 480px) {
+  }
+  
+  @media (max-width: 480px) {
+    .layer {
+      max-height: 80%; // Ще менша висота для мобільних екранів
+    }
+  
     h2 {
-        font-size: 1.6rem;
+      font-size: 1.6rem;
     }
-
+  
     p {
-        font-size: 0.9rem;
+      font-size: 0.9rem;
     }
-
+  
     ul#leaderboard li {
-        font-size: 0.9rem;
+      font-size: 0.9rem;
     }
-}
+  }
+  

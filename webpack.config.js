@@ -14,7 +14,7 @@ module.exports = (env, argv) => {
       final: './src/js/final.js',
     },
     output: {
-      filename: 'js/[name].bundle.js',
+      filename: isProduction ? 'js/[name].[contenthash].bundle.js' : 'js/[name].bundle.js',
       path: path.resolve(__dirname, 'dist'),
       publicPath: '/', // Забезпечує правильні шляхи у продакшені
     },
@@ -52,7 +52,7 @@ module.exports = (env, argv) => {
     plugins: [
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({
-        filename: 'styles/[name].css',
+        filename: isProduction ? 'styles/[name].[contenthash].css' : 'styles/[name].css',
       }),
       new HtmlWebpackPlugin({
         template: './src/index.html',

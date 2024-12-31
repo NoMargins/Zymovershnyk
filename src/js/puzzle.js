@@ -201,6 +201,7 @@ class PolyPiece {
     puzzle.container.appendChild(this.canvas);
     this.canvas.classList.add('polypiece');
     this.ctx = this.canvas.getContext("2d");
+    this.ctx.imageSmoothingEnabled = false; // Вимикаємо згладжування
   }
 
   merge(otherPoly) {
@@ -381,6 +382,8 @@ class PolyPiece {
 
   drawImage() {
     const puzzle = this.puzzle;
+    this.canvas.classList.add('dragging');
+
     this.nx = this.pckxmax - this.pckxmin + 1;
     this.ny = this.pckymax - this.pckymin + 1;
     this.canvas.width = this.nx * puzzle.scalex;
@@ -422,6 +425,7 @@ class PolyPiece {
       let h = 2 * puzzle.scaley;
       if (srcx + w > puzzle.gameCanvas.width) w = puzzle.gameCanvas.width - srcx;
       if (srcy + h > puzzle.gameCanvas.height) h = puzzle.gameCanvas.height - srcy;
+      this.ctx.imageSmoothingEnabled = false; // Вимикаємо згладжування
 
       this.ctx.drawImage(puzzle.gameCanvas, srcx, srcy, w, h, destx, desty, w, h);
 
@@ -826,7 +830,7 @@ function imageLoaded(puzzle) {
     puzzle.imageLoaded = true;
   
     setTimeout(() => {
-      events.push({ event: "nbpieces", nbpieces: 4 });
+      events.push({ event: "nbpieces", nbpieces: 30 });
     }, 2000);
 }
 
@@ -1224,3 +1228,5 @@ export function sentDataToAPI(userData, startTime, endTime, result) {
     console.error('Помилка в sentDataToAPI:', error);
   }
 }
+
+

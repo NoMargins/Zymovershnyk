@@ -25,6 +25,11 @@ body {
   border: none;
 }
 
+.dragging {
+  box-shadow: none; /* Вимкнути тіні під час пересування */
+  cursor: grabbing; /* Візуалізація процесу пересування */
+}
+
 .moving {
   transition-property: top, left;
   transition-duration: 1s;
